@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             }
             .launchIn(this)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel()
     }
 }
 
